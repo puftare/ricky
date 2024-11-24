@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../utils/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -33,9 +34,9 @@ const LoginPage = () => {
       </div>
       {error && <p className="error-message">{error}</p>}{" "}
       {/* Show error message */}
-      <button className="login-btn" onClick={handleLogin}>
+      <Button className="login-btn" onClick={handleLogin}>
         Log In
-      </button>
+      </Button>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React from "react";
 import { useAuth } from "../../utils/AuthProvider";
+import Button from "../../components/Button/Button";
 
 const DashboardPage = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -16,9 +16,9 @@ const DashboardPage = () => {
     <div className="dashboard-page">
       <h1>Dashboard</h1>
       <p>Welcome to your dashboard!</p>
-      <button onClick={logout} className="logout">
+      <Button onClick={logout} className="logout">
         Log Out
-      </button>
+      </Button>
     </div>
   );
 };
