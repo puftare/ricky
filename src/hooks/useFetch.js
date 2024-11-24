@@ -14,11 +14,13 @@ const useFetch = (fetchFunction, params) => {
         const result = await fetchFunction(...params);
         timeoutId = setTimeout(() => {
           setData(result);
-          setLoading(false);
         }, LOADING_DELAY_TIME);
       } catch (err) {
         setError(err);
-        setLoading(false);
+      } finally {
+        timeoutId = setTimeout(() => {
+          setLoading(false);
+        }, LOADING_DELAY_TIME);
       }
     };
 
