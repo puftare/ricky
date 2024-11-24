@@ -5,14 +5,20 @@ const DashboardPage = () => {
   const { isAuthenticated, logout } = useAuth(); // Accessing authentication status
 
   if (!isAuthenticated) {
-    return <div>You are not logged in.</div>;
+    return (
+      <div className="dashboard-page">
+        <p>You are not logged in.</p>
+      </div>
+    );
   }
 
   return (
-    <div>
+    <div className="dashboard-page">
       <h1>Dashboard</h1>
       <p>Welcome to your dashboard!</p>
-      <button onClick={logout}>Log Out</button>{" "}
+      <button onClick={logout} className="logout">
+        Log Out
+      </button>
     </div>
   );
 };

@@ -21,9 +21,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <div>
+    <div className="login-page">
+      <h1>Login</h1>
+      <div className="input-container">
         <input
           type="password"
           value={password}
@@ -31,9 +31,11 @@ const LoginPage = () => {
           placeholder="Enter password"
         />
       </div>
-      {error && <p style={{ color: "red" }}>{error}</p>}{" "}
+      {error && <p className="error-message">{error}</p>}{" "}
       {/* Show error message */}
-      <button onClick={handleLogin}>Log In</button>
+      <button className="login-btn" onClick={handleLogin}>
+        Log In
+      </button>
     </div>
   );
 };
