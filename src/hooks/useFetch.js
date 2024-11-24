@@ -14,7 +14,7 @@ const useFetch = (fetchFunction, params) => {
         timeoutId = setTimeout(() => {
           setData(result);
           setLoading(false);
-        }, 1000);
+        }, 500);
       } catch (err) {
         setError(err);
         setLoading(false);
