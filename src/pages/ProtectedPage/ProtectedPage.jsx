@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../utils/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
 
-const ProtectedPage = ({ element, ...rest }) => {
+const ProtectedPage = ({ element }) => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {

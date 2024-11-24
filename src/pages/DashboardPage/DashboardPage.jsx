@@ -1,4 +1,4 @@
-import { useAuth } from "../../utils/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
 import Button from "../../components/Button/Button";
 
 const DashboardPage = () => {

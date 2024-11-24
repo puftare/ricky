@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuth } from "../../utils/AuthProvider";
+import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 
@@ -21,6 +21,12 @@ const LoginPage = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <div className="login-page">
       <h1>Login</h1>
@@ -30,10 +36,10 @@ const LoginPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter password"
+          onKeyDown={handleKeyDown} // Listen for the Enter key press
         />
       </div>
-      {error && <p className="error-message">{error}</p>}{" "}
-      {/* Show error message */}
+      {error && <p className="error-message">{error}</p>}
       <Button className="login-btn" onClick={handleLogin}>
         Log In
       </Button>
