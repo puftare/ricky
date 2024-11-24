@@ -1,5 +1,4 @@
 export const getPages = (totalPages, currentPage, numButtons = 5) => {
-  // Ensure numButtons is an odd number
   if (numButtons % 2 === 0) {
     throw new Error("numButtons should be an odd number.");
   }

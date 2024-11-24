@@ -6,17 +6,17 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [password, setPassword] = useState(""); // State to store the inputted password
-  const [error, setError] = useState(""); // State to store error message
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = () => {
-    const storedPassword = process.env.REACT_APP_PASSWORD; // Fetch the password from environment variables
+    const storedPassword = process.env.REACT_APP_PASSWORD;
 
     if (password === storedPassword) {
-      login(); // Authenticate the user
-      navigate("/dashboard"); // Redirect to the dashboard
+      login();
+      navigate("/dashboard");
     } else {
-      setError("Incorrect password!"); // Display error message if password is wrong
+      setError("Incorrect password!");
     }
   };
 
@@ -27,7 +27,7 @@ const LoginPage = () => {
         <input
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)} // Update password state on input change
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter password"
         />
       </div>

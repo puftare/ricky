@@ -1,8 +1,8 @@
 import React from "react";
-import { useAuth } from "../../utils/AuthProvider"; // Importing useAuth hook to get the authentication state
+import { useAuth } from "../../utils/AuthProvider";
 
 const DashboardPage = () => {
-  const { isAuthenticated, logout } = useAuth(); // Accessing authentication status
+  const { isAuthenticated, logout } = useAuth();
 
   if (!isAuthenticated) {
     return (

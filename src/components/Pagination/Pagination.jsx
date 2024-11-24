@@ -1,43 +1,44 @@
 import { getPages } from "../../utils/helpers";
+import Button from "../Button/Button";
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = getPages(totalPages, currentPage, 3);
 
   return (
     <div className="pagination">
-      <button disabled={currentPage === 1} onClick={() => onPageChange(1)}>
+      <Button disabled={currentPage === 1} onClick={() => onPageChange(1)}>
         First
-      </button>
+      </Button>
 
-      <button
+      <Button
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
         Prev
-      </button>
+      </Button>
 
       {pages.map((page) => (
-        <button
+        <Button
           key={page}
           onClick={() => onPageChange(page)}
           className={page === currentPage ? "active" : ""}
         >
           {page}
-        </button>
+        </Button>
       ))}
 
-      <button
+      <Button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >
         Next
-      </button>
+      </Button>
 
-      <button
+      <Button
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(totalPages)}
       >
         Last
-      </button>
+      </Button>
     </div>
   );
 };
