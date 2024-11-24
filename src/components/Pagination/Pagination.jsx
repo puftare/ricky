@@ -1,7 +1,9 @@
 import { getPages } from "../../utils/helpers";
 import Button from "../Button/Button";
+import { NUMBER_OF_PAGINATION_BUTTONS } from "../../constants/constants";
+
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pages = getPages(totalPages, currentPage, 3);
+  const pages = getPages(totalPages, currentPage, NUMBER_OF_PAGINATION_BUTTONS);
 
   return (
     <div className="pagination">

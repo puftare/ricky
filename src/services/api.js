@@ -1,9 +1,13 @@
 import axios from "axios";
 
-export const fetchCharacters = async (page = 1) => {
-  const response = await axios.get(
-    `${process.env.REACT_APP_BASE_URL}/character?page=${page}`
-  );
+export const fetchCharacters = async (page = 1, searchQuery = "") => {
+  let url = `${process.env.REACT_APP_BASE_URL}/character?page=${page}`;
+
+  if (searchQuery) {
+    url += `&name=${searchQuery}`;
+  }
+
+  const response = await axios.get(url);
   return response.data;
 };
 
