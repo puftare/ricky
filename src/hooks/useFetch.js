@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { LOADING_DELAY_TIME } from "../constants/constants";
 
 const useFetch = (fetchFunction, params) => {
   const [data, setData] = useState(null);
@@ -14,7 +15,7 @@ const useFetch = (fetchFunction, params) => {
         timeoutId = setTimeout(() => {
           setData(result);
           setLoading(false);
-        }, 500);
+        }, LOADING_DELAY_TIME);
       } catch (err) {
         setError(err);
         setLoading(false);
