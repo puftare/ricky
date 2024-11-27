@@ -13,7 +13,6 @@ import {
 } from "../../utils/helpers";
 
 const HomePage = () => {
-  // const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const queryPage = getPageFromQueryParam();
 
@@ -39,7 +38,7 @@ const HomePage = () => {
       <ToggleTheme />
       <div className="home-page">
         <h1>Rick and Morty Characters</h1>
-        {/* Search Input */}
+
         <div className="search-container">
           <input
             type="text"
@@ -58,9 +57,7 @@ const HomePage = () => {
         <Pagination
           currentPage={queryPage}
           totalPages={data?.info?.pages}
-          // onPageChange={setCurrentPage}
           navigate={navigate}
-          searchQuery={searchQuery}
         />
       </div>
     </>
