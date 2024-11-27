@@ -11,7 +11,10 @@ const useFetch = (fetchFunction, params) => {
 
     const fetchData = async () => {
       try {
-        const result = await fetchFunction(...params);
+        let result;
+
+        result = await fetchFunction(...params);
+
         timeoutId = setTimeout(() => {
           setData(result);
         }, LOADING_DELAY_DURATION);

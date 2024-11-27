@@ -1,11 +1,14 @@
 import axios from "axios";
+import {
+  getPageFromQueryParam,
+  getSearchFromQueryParam,
+} from "../utils/helpers";
 
-export const fetchCharacters = async (page = 1, searchQuery = "") => {
-  let url = `${process.env.REACT_APP_BASE_URL}/character?page=${page}`;
+export const fetchCharacters = async () => {
+  const queryPage = getPageFromQueryParam();
+  const querySearch = getSearchFromQueryParam();
 
-  if (searchQuery) {
-    url += `&name=${searchQuery}`;
-  }
+  let url = `${process.env.REACT_APP_BASE_URL}/character?page=${queryPage}&name=${querySearch}`;
 
   const response = await axios.get(url);
   return response.data;

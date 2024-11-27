@@ -5,9 +5,9 @@ import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <AuthProvider>
+  <AuthProvider>
+    <Router>
       <App />
-    </AuthProvider>
-  </Router>
+    </Router>
+  </AuthProvider>
 );

@@ -1,4 +1,5 @@
 import { useAuth } from "../../hooks/useAuth";
+import ToggleTheme from "../../components/ToggleTheme/ToggleTheme";
 import Button from "../../components/Button/Button";
 
 const DashboardPage = () => {
@@ -13,13 +14,16 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="dashboard-page">
-      <h1>Dashboard</h1>
-      <p>Welcome to your dashboard!</p>
-      <Button onClick={logout} className="logout">
-        Log Out
-      </Button>
-    </div>
+    <>
+      <ToggleTheme />
+      <div className="dashboard-page">
+        <h1>Dashboard</h1>
+        <p>Welcome to your dashboard!</p>
+        <Button onClick={logout} className="logout">
+          Log Out
+        </Button>
+      </div>
+    </>
   );
 };
 
