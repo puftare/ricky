@@ -19,7 +19,7 @@ const SingleCharacterPage = () => {
   if (loading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
-  const { name, image, status, species, origin } = data;
+  const { name, image, status, species, origin, gender, location } = data;
 
   return (
     <>
@@ -29,8 +29,11 @@ const SingleCharacterPage = () => {
         <img src={image} alt={name} />
         <h1>{name}</h1>
         <p>Status: {status}</p>
+        <p>Gender: {gender}</p>
         <p>Species: {species}</p>
         <p>Origin: {origin.name}</p>
+        <p>Location: {location.name}</p>
+
         <Button onClick={() => navigate(-1)} className="btn">
           Go back
         </Button>

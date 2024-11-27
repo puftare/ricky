@@ -82,6 +82,8 @@ a {
 
 .pagination button:hover:not(:disabled) {
   background: #0056b3;
+  font-weight: bold;
+  transform: scale(1.1);
 }
 
 .pagination button:disabled {
@@ -92,6 +94,7 @@ a {
 .pagination button.active {
   background: #0056b3;
   font-weight: bold;
+  transform: scale(1.1);
 }
 
 .card {

@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const Error = ({ message }) => {
   const navigate = useNavigate();
@@ -9,7 +9,12 @@ const Error = ({ message }) => {
       <div className="error-message">
         <h2>Oops! Something went wrong.</h2>
         <p>{message}</p>
-        <Button onClick={() => navigate(-1)} className="btn">
+        <Button
+          onClick={() => {
+            navigate("/");
+          }}
+          className="btn"
+        >
           Try Again
         </Button>
       </div>

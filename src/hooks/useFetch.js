@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { LOADING_DELAY_DURATION } from "../constants/constants";
 
 const useFetch = (fetchFunction, params) => {
@@ -6,14 +6,18 @@ const useFetch = (fetchFunction, params) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const memoizedParams = useMemo(() => params, [params]);
+  const memoizedFunction = useCallback(
+    () => fetchFunction(...memoizedParams),
+    [fetchFunction, memoizedParams]
+  );
+
   useEffect(() => {
     let timeoutId;
 
     const fetchData = async () => {
       try {
-        let result;
-
-        result = await fetchFunction(...params);
+        let result = await memoizedFunction(...memoizedParams);
 
         timeoutId = setTimeout(() => {
           setData(result);
@@ -32,7 +36,7 @@ const useFetch = (fetchFunction, params) => {
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [fetchFunction, params]);
+  }, [memoizedFunction, memoizedParams]);
 
   return { data, loading, error };
 };

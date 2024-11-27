@@ -1,37 +1,34 @@
-import { useState, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import useFetch from "../../hooks/useFetch";
 import { fetchCharacters } from "../../services/api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Card from "../../components/Card/Card";
 import Pagination from "../../components/Pagination/Pagination";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
 import ToggleTheme from "../../components/ToggleTheme/ToggleTheme";
-import {
-  getPageFromQueryParam,
-  getSearchFromQueryParam,
-} from "../../utils/helpers";
 
 const HomePage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const queryPage = getPageFromQueryParam();
+  const [searchParams] = useSearchParams();
 
-  const memoizedParams = useMemo(
-    () => [searchQuery, queryPage],
-    [searchQuery, queryPage]
+  const page = Number(searchParams.get("page"));
+  const name = searchParams.get("name");
+
+  const memoizedParams = useMemo(() => [page, name], [page, name]);
+  const memoizedFetch = useCallback(
+    () => fetchCharacters(...memoizedParams),
+    [memoizedParams]
   );
-  const memoizedFetch = useCallback(() => fetchCharacters(), []);
 
   const { data, loading, error } = useFetch(memoizedFetch, memoizedParams);
   const navigate = useNavigate();
 
   const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
     navigate(`?page=1&name=${e.target.value}`);
   };
 
   if (loading) return <Loading />;
-  if (error) return <Error message={error.message} />;
+  if (error) return <Error message={error?.message} />;
 
   return (
     <>
@@ -43,22 +40,21 @@ const HomePage = () => {
           <input
             type="text"
             placeholder="Search characters..."
-            value={getSearchFromQueryParam()}
+            value={name}
             onChange={handleSearchChange}
           />
         </div>
 
-        <div className="grid">
-          {data?.results?.map((character) => (
-            <Card key={character.id} {...character} />
-          ))}
-        </div>
-
-        <Pagination
-          currentPage={queryPage}
-          totalPages={data?.info?.pages}
-          navigate={navigate}
-        />
+        {!error && (
+          <>
+            <div className="grid">
+              {data?.results?.map((character) => (
+                <Card key={character.id} {...character} />
+              ))}
+            </div>
+            <Pagination currentPage={page} totalPages={data?.info?.pages} />
+          </>
+        )}
       </div>
     </>
   );

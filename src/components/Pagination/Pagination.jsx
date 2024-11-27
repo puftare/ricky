@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import { getPages, getSearchFromQueryParam } from "../../utils/helpers";
 import Button from "../Button/Button";
 import { NUMBER_OF_PAGINATION_BUTTONS } from "../../constants/constants";
 
-const Pagination = ({ currentPage, totalPages, navigate }) => {
+const Pagination = ({ currentPage, totalPages }) => {
   const searchQuery = getSearchFromQueryParam();
+  const navigate = useNavigate();
+
   const pages = getPages(totalPages, currentPage, NUMBER_OF_PAGINATION_BUTTONS);
 
   return (
@@ -11,7 +14,7 @@ const Pagination = ({ currentPage, totalPages, navigate }) => {
       <Button
         disabled={currentPage === 1}
         onClick={() => {
-          navigate(`/?page=${1}&name=${searchQuery}`);
+          navigate(`?page=${1}&name=${searchQuery}`);
         }}
       >
         {"<<"}
@@ -20,7 +23,7 @@ const Pagination = ({ currentPage, totalPages, navigate }) => {
       <Button
         disabled={currentPage === 1}
         onClick={() => {
-          navigate(`/?page=${currentPage - 1}&name=${searchQuery}`);
+          navigate(`?page=${currentPage - 1}&name=${searchQuery}`);
         }}
       >
         {"<"}
@@ -30,7 +33,7 @@ const Pagination = ({ currentPage, totalPages, navigate }) => {
         <Button
           key={page}
           onClick={() => {
-            navigate(`/?page=${page}&name=${searchQuery}`);
+            navigate(`?page=${page}&name=${searchQuery}`);
           }}
           className={page === currentPage ? "active" : ""}
         >
@@ -41,7 +44,7 @@ const Pagination = ({ currentPage, totalPages, navigate }) => {
       <Button
         disabled={currentPage === totalPages}
         onClick={() => {
-          navigate(`/?page=${currentPage + 1}&name=${searchQuery}`);
+          navigate(`?page=${currentPage + 1}&name=${searchQuery}`);
         }}
       >
         {">"}
@@ -50,7 +53,7 @@ const Pagination = ({ currentPage, totalPages, navigate }) => {
       <Button
         disabled={currentPage === totalPages}
         onClick={() => {
-          navigate(`/?page=${totalPages}&name=${searchQuery}`);
+          navigate(`?page=${totalPages}&name=${searchQuery}`);
         }}
       >
         {">>"}

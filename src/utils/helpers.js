@@ -121,13 +121,21 @@ export const makeTextShorter = (text, textEndIndex) => {
 };
 
 export const getPageFromQueryParam = () => {
-  const queryPage = window.location.href.split("=")[1].split("&")[0];
+  try {
+    const queryPage = window.location.href?.split("=")[1].split("&")[0];
 
-  return Number(queryPage) || 1;
+    return Number(queryPage) || 1;
+  } catch (error) {
+    return 1;
+  }
 };
 
 export const getSearchFromQueryParam = () => {
-  const searchQuery = window.location.href.split("=")[2];
+  try {
+    const searchQuery = window.location.href?.split("=")[2];
 
-  return String(searchQuery) || "";
+    return "" || searchQuery;
+  } catch (error) {
+    return "";
+  }
 };
