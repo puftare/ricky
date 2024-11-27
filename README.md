@@ -1,5 +1,7 @@
 # Ricky App
 
+## Instructions
+
 Please read `.env.example` and add the variables in `.env` file
 
 ## Available Scripts
